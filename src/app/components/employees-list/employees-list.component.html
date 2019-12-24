@@ -1,23 +1,24 @@
-<form action="" style="background-color: #ddd;padding: 15px;margin-bottom: 15px;">
+<form [formGroup]="createComponent" (ngSubmit)="onSubmit()" style="background-color: #ddd; padding: 15px; margin-bottom: 15px;">
   <h4>Create Comments</h4>
   <div class="row">
     <div class="col">
       <label for="">Enter Name</label>
-      <input type="text" class="form-control" />
+      <input type="text" class="form-control" formControlName="name" />
     </div>
     <div class="col">
       <label for="">Enter Comment</label>
-      <input type="text" class="form-control" />
+      <input type="text" class="form-control" formControlName="body" />
     </div>
     <div class="col">
       <label for="">Enter Email</label>
-      <input type="text" class="form-control" />
+      <input type="text" class="form-control" formControlName="email" />
     </div>
     <div class="col-12 text-right">
-      <button class="btn btn-primary mt-4">Submit</button>
+      <button class="btn btn-primary mt-4" type="submit">Submit</button>
     </div>
   </div>
 </form>
+
 <div class="row" *ngIf="dataSource">
   <div class="col-4" *ngFor="let empDetail of empDetails | async">
     <!-- <app-employee [parentData]="empDetail"></app-employee> -->
