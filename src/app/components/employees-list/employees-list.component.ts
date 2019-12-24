@@ -4,6 +4,7 @@ import { MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { Empdata } from 'src/app/models/employee.model';
+import { FormGroup, FormControl} from '@angular/forms';
 
 
 @Component({
@@ -12,6 +13,8 @@ import { Empdata } from 'src/app/models/employee.model';
   styleUrls: ['./employees-list.component.scss']
 })
 export class EmployeesListComponent implements OnInit, AfterViewInit {
+
+  constructor(private employeeServices: EmployeeService) { }
   empDetails: Observable<any>;
 
   // dataSource: MatTableDataSource;
@@ -19,7 +22,12 @@ export class EmployeesListComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource<Empdata>();
   currentPage: any;
   obs: any;
-  constructor(private employeeServices: EmployeeService) { }
+
+  // createComponent = new FormGroup({
+  //   name: new.FormControl(''),
+  //   body: new.FormControl(''),
+  //   email: new.FormControl('')
+  // });
 
   ngOnInit() {
     this.employeeServices.getEmpData().subscribe(result => {
@@ -32,5 +40,11 @@ export class EmployeesListComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
+
+
+  onSubmit(){
+    console.log(this.createComponent.value);
+  }
+
 }
 
